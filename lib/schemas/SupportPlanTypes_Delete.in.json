@@ -1,0 +1,26 @@
+{
+    "type": "object",
+    "properties": {
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "providerName": {
+            "required": true,
+            "type": "string"
+        },
+        "planTypeName": {
+            "required": true,
+            "type": "string",
+            "enum": [
+                "Essential",
+                "Standard",
+                "Advanced"
+            ]
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

@@ -1,0 +1,135 @@
+{
+    "title": "Azure Addons Resource Provider",
+    "description": "The service for managing third party addons.",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/azure.com/addons-Addons/2017-05-15/swagger.json",
+    "envVars": {
+        "OAUTH_CLIENT_ID": {
+            "description": "OAuth Client ID"
+        },
+        "OAUTH_CLIENT_SECRET": {
+            "description": "OAuth Client Secret"
+        }
+    },
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://management.azure.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "azure_auth": {
+                "label": "Azure Active Directory OAuth2 Flow",
+                "viewClass": "OAuthFieldView"
+            }
+        },
+        "oauth2": {
+            "client_id": "{{OAUTH_CLIENT_ID}}",
+            "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+            "auth_uri": "https://login.microsoftonline.com/common/oauth2/authorize"
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "Operations_List": {
+            "main": "./lib/actions/Operations_List.js",
+            "title": "Lists all of the available Addons RP operations.",
+            "description": "Lists all of the available Addons RP operations.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Operations_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "CanonicalSupportPlanTypes_Get": {
+            "main": "./lib/actions/CanonicalSupportPlanTypes_Get.js",
+            "title": "Returns the Canonical Support Plans.",
+            "description": "Returns the Canonical Support Plans as well as whether they are enabled or not for the subscription.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/CanonicalSupportPlanTypes_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "SupportPlanTypes_Delete": {
+            "main": "./lib/actions/SupportPlanTypes_Delete.js",
+            "title": "Cancels the Canonical support plan of type {type} for the subscription.",
+            "description": "Cancels the Canonical support plan of type {type} for the subscription.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/SupportPlanTypes_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "SupportPlanTypes_Get": {
+            "main": "./lib/actions/SupportPlanTypes_Get.js",
+            "title": "Returns whether or not the canonical support plan of type {type} is enabled for the subscription.",
+            "description": "Returns whether or not the canonical support plan of type {type} is enabled for the subscription.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/SupportPlanTypes_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "SupportPlanTypes_CreateOrUpdate": {
+            "main": "./lib/actions/SupportPlanTypes_CreateOrUpdate.js",
+            "title": "Creates or updates the Canonical support plan of type {type} for the subscription.",
+            "description": "Creates or updates the Canonical support plan of type {type} for the subscription.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/SupportPlanTypes_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}
